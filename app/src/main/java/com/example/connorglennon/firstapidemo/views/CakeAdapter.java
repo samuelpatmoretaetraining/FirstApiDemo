@@ -15,6 +15,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by Connor Glennon on 22/11/2017.
  */
@@ -51,21 +55,23 @@ public class CakeAdapter extends RecyclerView.Adapter {
         Picasso.with(applicationContext).load(cakeModel.getImage()).into(myViewHolder.ivImage);
     }
 
+
     @Override
     public int getItemCount() {
         return cakes.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvDesc;
 
-        ImageView ivImage;
+        private Unbinder unbinder;
+
+        @BindView(R.id.tvCakeTitke) TextView tvTitle;
+        @BindView(R.id.tvCakeDesc) TextView tvDesc;
+        @BindView(R.id.ivCakeImage) ImageView ivImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            this.tvTitle = (TextView) itemView.findViewById(R.id.title);
-            this.tvDesc = (TextView) itemView.findViewById(R.id.desc);
-            this.ivImage = (ImageView) itemView.findViewById(R.id.image);
+            unbinder = ButterKnife.bind(this, itemView);
         }
     }
 }

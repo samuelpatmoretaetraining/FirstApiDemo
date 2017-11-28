@@ -18,6 +18,8 @@ import com.example.connorglennon.firstapidemo.views.cakelist.utils.rx.AppSchedul
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -26,7 +28,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements ICakeListView{
 
-    private RecyclerView recyclerView;
+    @BindView(R.id.rvCakeList) RecyclerView recyclerView;
+
+
     List<CakeModel> cakesList;
     private CakeListPresenter<MainActivity> cakeListPresenter;
 
@@ -34,11 +38,11 @@ public class MainActivity extends AppCompatActivity implements ICakeListView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         initialisePresenter();
         cakeListPresenter.onCallCakeList();
 
-        recyclerView = (RecyclerView) findViewById(R.id.rvCakeList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }

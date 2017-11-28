@@ -25,6 +25,8 @@ import android.view.View;
 
 import com.example.connorglennon.firstapidemo.views.cakelist.utils.CommonUtils;
 
+import butterknife.Unbinder;
+
 
 /**
  * Created by janisharali on 27/01/17.
@@ -33,7 +35,7 @@ import com.example.connorglennon.firstapidemo.views.cakelist.utils.CommonUtils;
 public abstract class BaseFragment extends Fragment implements MvpView {
 
     private BaseActivity mActivity;
-  //  private Unbinder mUnBinder;
+    private Unbinder mUnBinder;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -133,19 +135,19 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         return mActivity;
     }
 
-//    public void setUnBinder(Unbinder unBinder) {
-//        mUnBinder = unBinder;
-//    }
-//
-//    protected abstract void setUp(View view);
-//
-//    @Override
-//    public void onDestroy() {
-//        if (mUnBinder != null) {
-//            mUnBinder.unbind();
-//        }
-//        super.onDestroy();
-//    }
+    public void setUnBinder(Unbinder unBinder) {
+        mUnBinder = unBinder;
+    }
+
+    protected abstract void setUp(View view);
+
+    @Override
+    public void onDestroy() {
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
+        }
+        super.onDestroy();
+    }
 
     public interface Callback {
 

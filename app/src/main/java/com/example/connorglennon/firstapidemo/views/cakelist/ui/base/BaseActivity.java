@@ -35,6 +35,8 @@ import com.example.connorglennon.firstapidemo.R;
 import com.example.connorglennon.firstapidemo.views.cakelist.utils.CommonUtils;
 import com.example.connorglennon.firstapidemo.views.cakelist.utils.NetworkUtils;
 
+import butterknife.Unbinder;
+
 
 /**
  * Created by janisharali on 27/01/17.
@@ -46,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity
     private ProgressDialog mProgressDialog;
 
 
-   // private Unbinder mUnBinder;
+    private Unbinder mUnBinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -150,18 +152,18 @@ public abstract class BaseActivity extends AppCompatActivity
 
 
 
-//    public void setUnBinder(Unbinder unBinder) {
-//        mUnBinder = unBinder;
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//
-//        if (mUnBinder != null) {
-//            mUnBinder.unbind();
-//        }
-//        super.onDestroy();
-//    }
+    public void setUnBinder(Unbinder unBinder) {
+        mUnBinder = unBinder;
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
+        }
+        super.onDestroy();
+    }
 
     protected abstract void setUp();
 }
